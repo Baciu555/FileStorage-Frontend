@@ -1,0 +1,31 @@
+.logged-main {
+  margin-top: 40px;
+}
+
+.btn-circle {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 30px;
+}
+
+.button-wrapper {
+	position: fixed;
+	right: 40px;
+	top: 100px;
+}
+
+.button-wrapper-users {
+	position: fixed;
+	right: 40px;
+	top: 180px;
+}
+
+.file-action-btn {
+  padding: 0.2rem 1.13rem;
+  margin: 0px;
+  margin-right: 0.2rem;
+}

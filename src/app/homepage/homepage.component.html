@@ -1,0 +1,171 @@
+<header class="masthead text-center text-white d-flex">
+		<div class="container my-auto">
+			<div class="row">
+				<div class="col-lg-10 mx-auto">
+					<h1 class="text-uppercase">
+						<strong>Przenieś swoje dane do chmury</strong>
+					</h1>
+					<hr class="violet-hr"/>
+				</div>
+				<div class="col-lg-8 mx-auto">
+					<p class="text-faded mb-5 header-text">Zaloguj się lub zarejestruj aby poznać zalety przechowywania dokumentów online.</p>
+					<p class="text-faded mb-5 header-text" style="margin-bottom: 40px !important;">Przejdź przez prosty proces rejestracji i odkryj zalety serwisu.</p>
+					<!-- Button trigger modal -->
+					<button type="button" class="btn bg-violet" data-toggle="modal" data-target="#loginModal">
+						Zaloguj się
+					</button>
+
+					<!-- Button trigger modal -->
+					<button type="button" class="btn bg-violet" data-toggle="modal" data-target="#registerModal">
+						Zarejestruj się
+					</button>
+				</div>
+			</div>
+		</div>
+	</header>
+
+
+	<!-- Login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Zaloguj się</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<!-- Form login -->
+					<form #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm.value)">
+						<div class="form-group">
+							<i class="glyphicon glyphicon-envelope prefix grey-text"></i>
+							<input type="text" name="email" class="form-control" ngModel />
+							<label for="email">Email</label>
+						</div>
+
+						<div class="form-group">
+							<i class="glyphicon glyphicon-lock prefix grey-text"></i>
+							<input type="password" name="password" class="form-control" ngModel />
+							<label for="password">Hasło</label>
+						</div>
+						<p>{{message}}</p>
+						<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" id="btnLogin">Zaloguj</button>
+				</div>
+					</form>
+					<!-- Form login -->
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<!-- Register Modal -->
+	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="registerModalHeader">Zarejstruj się</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<!-- Form login -->
+					<form #registerForm="ngForm" (ngSubmit)="onSubmitRegister(registerForm.value)">
+						<div class="form-group">
+							<i class="glyphicon glyphicon-user prefix grey-text"></i>
+							<input type="text" name="registerUsername" class="form-control" ngModel/>
+							<label for="registerUsername">Your username</label>
+						</div>
+						<div class="form-group">
+							<i class="glyphicon glyphicon-envelope prefix grey-text"></i>
+							<input type="text" name="registerEmail" class="form-control" ngModel/>
+							<label for="registerEmail">Your email</label>
+						</div>
+						<div class="form-group">
+							<i class="glyphicon glyphicon-lock prefix grey-text"></i>
+							<input type="password" name="registerPassword" class="form-control" ngModel/>
+							<label for="password">Your password</label>
+						</div>
+						<div class="form-group">
+							<i class="glyphicon glyphicon glyphicon-repeat prefix grey-text"></i>
+							<input type="password" name="registerPasswordConfirm" class="form-control" ngModel/>
+							<label for="registerPasswordConirm">Retype password</label>
+						</div>
+						<p>{{message}}</p>
+						<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Wyślij</button>
+				</div>
+					</form>
+					<!-- Form login -->
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<section class="bg-violet" id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto text-center">
+					<h2 class="section-heading text-white">Znudzony kopiowaniem plików na wszystkie urządzenia?</h2>
+					<hr class="light my-4"/>
+					<p class="text-faded mb-4">Poznaj przechowywarke plików! Dzięki funkcjom naszego serwisu możesz wysłać pliki na nasze serwery i pobierać je z innych urządzeń jak tablet i telefon. Możesz ponadto tworzyć grupy i udostępniać pliki swoim znajomym!</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!--Main Layout-->
+	<main class="text-center py-5">
+		<div class="container">
+			<h2 class="section-heading">Poznaj nasze usługi</h2>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-xl-4">
+					<i class="glyphicon glyphicon-usd glyph-icon"></i>
+					<h1>Darmowe przechowywanie</h1>
+					<p align="justify">Nasze usługi przechowywania plików są całkowicie darmowe. Bez limitów transferu. Bez limitów wielkości plików.</p>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-xl-4">
+					<i class="glyphicon glyphicon-folder-open glyph-icon"></i>
+					<h1>Udostępnianie plików</h1>
+					<p align="justify">Twoje pliki możesz także udostępniać innym. Po prostu utwórz nową grupe i dodaj do niej znajomych i pliki. Twoi znajomi również będą mogli dodawać pliki do udostępnienia grupie.</p>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-xl-4">
+					<i class="glyphicon glyphicon-phone glyph-icon"></i>
+					<h1>Laptop, telefon, tablet</h1>
+					<p align="justify">Nasza strona jest skalowalna więc dopasowuje się automatycznie do wielkości ekranu. Dzięki temu możesz korzystać z serwisu na laptopie, telefonie czy tablecie.</p>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-xl-4">
+					<i class="glyphicon glyphicon-list-alt glyph-icon"></i>
+					<h1>Obsługa wielu rozszerzeń</h1>
+					<p align="justify">Wgrywaj pliki bez względu na rozszerzenia. Nasz serwis został tak zaprojektowany aby móc udostępniać wszystkie rodzaje plików.</p>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-xl-4">
+					<i class="glyphicon glyphicon-bullhorn glyph-icon"></i>
+					<h1>Zarządzanie grupami</h1>
+					<p align="justify">Wgrywaj pliki bez względu na rozszerzenia. Nasz serwis został tak zaprojektowany aby móc udostępniać wszystkie rodzaje plików.</p>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-xl-4">
+					<i class="glyphicon glyphicon-download-alt glyph-icon"></i>
+					<h1>Brak limitów wysyłania</h1>
+					<p align="justify">Wgrywaj pliki bez względu na rozszerzenia. Nasz serwis został tak zaprojektowany aby móc udostępniać wszystkie rodzaje plików.</p>
+				</div>
+			</div>
+		</div>
+
+	</main>
+	<!--Main Layout-->
+
+	<section class="bg-dark text-white">
+		<div class="container text-center">
+			<h2 class="mb-4">Zarejestruj się już dzis!</h2>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn bg-violet" data-toggle="modal" data-target="#registerModal">
+				Zarejestruj się
+			</button>
+		</div>
+	</section>

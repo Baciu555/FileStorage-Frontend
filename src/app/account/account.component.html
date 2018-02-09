@@ -1,0 +1,112 @@
+<!--Main Navigation-->
+<header>
+  <!--Navbar -->
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark cyan fixed-top" style="background-color: #6351ce !important;">
+    <a class="navbar-brand" routerLink="../main">Główna</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="../groups"><i class="glyphicon glyphicon-file"></i> Grupy</a>
+        </li>
+<!--         <li class="nav-item">
+          <a class="nav-link" routerLink="../stats"><i class="glyphicon glyphicon-signal"></i> Statystyki</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="../account"><i class="glyphicon glyphicon-user"></i> Konto <span class="sr-only">(current)</span> </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="onLogout()" class="nav-link" id="logout"><i class="glyphicon glyphicon-log-out"></i> Wyloguj</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--/.Navbar -->
+</header>
+<!--Main Layout-->
+<main class="text-center py-5 logged-main">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+        <h2 class="section-heading">Twoje konto</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Nazwa</th>
+              <th>Email</th>
+              <th>Data dołączenia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <button class="btn btn-primary file-action-btn" data-toggle="modal" data-target="#editUser">x</button>
+              </td>
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.registerDate | date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+				<h2 class="section-heading">Twoje pliki</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Nazwa</th>
+							<th>Rozmiar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let file of user.files">
+							<td><button (click)="downloadFile(file.id, file.name)" class="btn btn-primary file-action-btn">+</button><button (click)="deleteFile(file.id)" class="btn btn-danger file-action-btn">-</button></td>
+							<td>{{file.name}}</td>
+							<td>{{file.size}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+  </div>
+  <!-- Login Modal -->
+  <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Zaloguj się</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Form login -->
+          <form #editForm="ngForm" (ngSubmit)="editUser(editForm.value)">
+            <div class="form-group">
+              <i class="glyphicon glyphicon-envelope prefix grey-text"></i>
+              <input type="text" name="email" class="form-control" ngModel />
+              <label for="email">Email</label>
+            </div>
+            <div class="form-group">
+              <i class="glyphicon glyphicon-lock prefix grey-text"></i>
+              <input type="text" name="username" class="form-control" ngModel />
+              <label for="username">Nazwa</label>
+            </div>
+            <p>{{message}}</p>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="btnLogin">Wyślij</button>
+            </div>
+          </form>
+          <!-- Form login -->
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!--Main Layout-->

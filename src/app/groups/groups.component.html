@@ -1,0 +1,100 @@
+<!--Main Navigation-->
+<header>
+  <!--Navbar -->
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark cyan fixed-top" style="background-color: #6351ce !important;">
+    <a class="navbar-brand" routerLink="../main">Główna</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="../groups"><i class="glyphicon glyphicon-file"></i> Grupy</a>
+        </li>
+<!--         <li class="nav-item">
+          <a class="nav-link" routerLink="../stats"><i class="glyphicon glyphicon-signal"></i> Statystyki</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="../account"><i class="glyphicon glyphicon-user"></i> Konto <span class="sr-only">(current)</span> </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="onLogout()" class="nav-link" id="logout"><i class="glyphicon glyphicon-log-out"></i> Wyloguj</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--/.Navbar -->
+</header>
+<!--Main Layout-->
+<main class="text-center py-5 logged-main">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+        <h2 class="section-heading">Twoje grupy</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nazwa</th>
+              <th>Ilość członków</th>
+              <th>Ilość plików</th>
+              <th>Opis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let group of groups">
+              <td><a routerLink="../group/{{group.id}}">{{group.name}}</a></td>
+              <td>{{group.membersCount}}</td>
+              <td>{{group.filesCount}}</td>
+              <td *ngIf="group.description == null">-</td>
+              <td *ngIf="group.description != null">{{group.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+<!--Main Layout-->
+<!--Btn add group-->
+<div class="button-wrapper">
+  <button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#addGroupModal">+<i class="glyphicon glyphicon-plus"></i></button>
+</div>
+<!-- Add Group Modal -->
+<div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dodaj grupe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form add group -->
+        <form #groupForm="ngForm" (ngSubmit)="onSubmitAddGroup(groupForm.value)">
+            <div class="form-group">
+              <i class="glyphicon glyphicon-envelope prefix grey-text"></i>
+              <input type="text" name="name" class="form-control" ngModel />
+              <label for="name">Nazwa grupy</label>
+            </div>
+
+<!--             <div class="md-form">
+              <i class="glyphicon glyphicon-lock prefix grey-text"></i>
+              <input type="text" name="description" class="form-control" ngModel />
+              <label for="description">Opis</label>
+            </div> -->
+            <div class="form-group">
+              <i class="glyphicon glyphicon-lock prefix grey-text"></i>
+              <textarea type="text" name="description" class="form-control" ngModel></textarea>
+              <label for="description">Opis</label>
+            </div>
+          <p>{{message}}</p>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="addGroup">Wyślij</button>
+          </div>
+        </form>
+      </div>
+      <!-- Form add group -->
+    </div>
+  </div>
+</div>

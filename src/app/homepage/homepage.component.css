@@ -2,7 +2,10 @@
 header.masthead {
 	padding-top: 10rem;
 	padding-bottom: calc(10rem - 56px);
-	background-image: url("https://blackrockdigital.github.io/startbootstrap-creative/img/header.jpg");
+	
+	background-image: url("http://localhost:8080/datav2.jpg");
+	/*background-image: url("C:\Users\Wojtek\Angular2\file-storage\img\datav2.jpg");*/
+	/*background-image: url("https://blackrockdigital.github.io/startbootstrap-creative/img/header.jpg");*/
 	/*background-image: url("../img/header.jpg");*/
 /*	background-image: url("http://www.the-blockchain.com/wp-content/uploads/2016/07/blockchain-NEW.jpg");*/
 	background-position: center center;
@@ -44,7 +47,7 @@ header.masthead p {
 }
 
 .modal {
-	margin-top: 50px;
+	margin-top: 0px;
 }
 
 .header-text {
@@ -101,12 +104,4 @@ hr.light {
 	position: fixed;
 	right: 40px;
 	top: 100px;
-}
-
-.close {
-	cursor: pointer;
-}
-
-footer {
-	margin-top: 0px !important;
 }

@@ -1,0 +1,142 @@
+<!--Main Navigation-->
+<header>
+  <!--Navbar -->
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark cyan fixed-top" style="background-color: #6351ce !important;">
+    <a class="navbar-brand" routerLink="/main">Główna</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/groups"><i class="glyphicon glyphicon-file"></i> Grupy</a>
+        </li>
+ <!--        <li class="nav-item">
+          <a class="nav-link" routerLink="/stats"><i class="glyphicon glyphicon-signal"></i> Statystyki</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/account"><i class="glyphicon glyphicon-user"></i> Konto <span class="sr-only">(current)</span> </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="onLogout()" class="nav-link" id="logout"><i class="glyphicon glyphicon-log-out"></i> Wyloguj</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--/.Navbar -->
+</header>
+<!--Main Layout-->
+<main class="text-center py-5 logged-main">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+				<h2 class="section-heading">Pliki grupy</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Nazwa</th>
+							<th>Rozmiar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let file of group.files">
+							<td><button (click)="downloadFile(file.id, file.name)" class="btn btn-primary file-action-btn">+</button><button (click)="deleteFile(file.id)" class="btn btn-danger file-action-btn">-</button></td>
+							<td>{{file.name}}</td>
+							<td>{{file.size}}b</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+				<h2 class="section-heading">Uzytkownicy</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Nazwa</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let user of group.users">
+							<td>{{user.username}}</td>
+							<td>{{user.email}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+    </div>
+  </div>
+</main>
+<!--Main Layout-->
+<!--Btn add group-->
+<div class="button-wrapper">
+  <button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#addGroupModal">+<i class="glyphicon glyphicon-plus"></i></button>
+</div>
+
+<div class="button-wrapper-users">
+  <button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#addFilesModal">+<i class="glyphicon glyphicon-plus"></i></button>
+</div>
+
+<!-- Add Group Modal -->
+<div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dodaj użytkownika</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form add group -->
+        <form #usersForm="ngForm" (ngSubmit)="onSubmitAddUsers(usersForm.value)">
+          <div class="form-group">
+            <i class="glyphicon glyphicon-envelope prefix grey-text"></i>
+            <input type="text" name="email" class="form-control" ngModel />
+            <label for="email">Email użytkownika</label>
+          </div>
+          <p>{{message}}</p>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="addGroup">Wyślij</button>
+          </div>
+        </form>
+      </div>
+      <!-- Form add group -->
+      <!-- Form add group -->
+    </div>
+  </div>
+</div>
+
+<!-- Add Group Modal -->
+<div class="modal fade" id="addFilesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dodaj pliki</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form add group -->
+        <form #filesForm="ngForm" (ngSubmit)="onSubmitAddFiles(filesForm.value)">
+          <div class="form-group">
+    <label for="exampleSelect1"></label>
+    <select class="form-control" id="exampleSelect1" name="fileId" ngModel>
+      <option value="" disabled selected>Wybierz plik</option>
+      <option *ngFor="let file of userFiles" value="{{file.id}}">{{file.name}}</option>
+    </select>
+  </div>
+          <p>{{message}}</p>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="addGroup">Wyślij</button>
+          </div>
+        </form>
+      </div>
+      <!-- Form add group -->
+      <!-- Form add group -->
+    </div>
+  </div>
+</div>
